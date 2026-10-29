@@ -1,0 +1,133 @@
+/* SchoolConnect : base partagée (variables, reset, composants) */
+:root{--primary:#2563eb;--primary-dark:#1d4ed8;--text:#172033;--text-muted:#64748b;--background:#f1f5f9;--white:#fff;--border:#dbe3ef;
+--danger:#b91c1c;--danger-bg:#fef2f2;--success:#166534;--success-bg:#f0fdf4;--warn:#92400e;--warn-bg:#fffbeb;--info-bg:#eff6ff;--radius:16px;--shadow:0 20px 60px rgba(15,23,42,.10)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:radial-gradient(circle at top left,#dbeafe 0,transparent 40%),var(--background);line-height:1.6}
+a{color:var(--primary)}
+h1,h2,h3{line-height:1.25}
+.btn{display:inline-block;min-height:44px;padding:10px 18px;border:none;border-radius:9px;background:var(--primary);color:var(--white);font:inherit;font-size:.95rem;font-weight:700;text-align:center;text-decoration:none;cursor:pointer;transition:background .2s,box-shadow .2s,transform .2s}
+.btn:hover{background:var(--primary-dark);box-shadow:0 6px 18px rgba(37,99,235,.22)}
+.btn:active{transform:scale(.99)}
+.btn:disabled{background:#94a3b8;cursor:not-allowed;box-shadow:none}
+.btn-secondary{background:var(--white);color:var(--primary);border:1px solid var(--border)}
+.btn-secondary:hover{background:var(--info-bg);box-shadow:none}
+.btn-danger{background:var(--danger)}.btn-danger:hover{background:#991b1b}
+.btn-sm{min-height:34px;padding:5px 12px;font-size:.85rem}
+.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
+.panel input,.field input,.field select,.field textarea,.toolbar input,.toolbar select,.cell-input{display:block;width:100%;min-height:46px;padding:10px 14px;font:inherit;font-size:.96rem;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:9px;outline:none;transition:border-color .2s,box-shadow .2s}
+.field textarea{min-height:110px;resize:vertical}
+.panel input:hover,.field input:hover,.field select:hover,.field textarea:hover{border-color:#94a3b8}
+.panel input:focus,.field input:focus,.field select:focus,.field textarea:focus,.toolbar input:focus,.toolbar select:focus,.cell-input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(37,99,235,.12)}
+.field label,.panel label{display:block;margin-bottom:6px;font-size:.93rem;font-weight:600}
+.field small{display:block;margin-top:4px;color:var(--text-muted);font-size:.82rem}
+.mssg{padding:12px 14px;margin-bottom:18px;border:1px solid transparent;border-radius:9px;font-size:.9rem}
+.mssg.err{color:var(--danger);background:var(--danger-bg);border-color:#fecaca}
+.mssg.success{color:var(--success);background:var(--success-bg);border-color:#bbf7d0}
+.mssg.warn{color:var(--warn);background:var(--warn-bg);border-color:#fde68a}
+.mssg[hidden]{display:none}
+.card{background:var(--white);border:1px solid rgba(219,227,239,.9);border-radius:var(--radius);padding:24px;margin-bottom:24px;box-shadow:0 4px 18px rgba(15,23,42,.05)}
+.card h2{font-size:1.15rem;margin-bottom:16px}
+.card h3{font-size:1rem;margin-bottom:8px}
+.muted{color:var(--text-muted);font-size:.92rem}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.8rem;font-weight:700;background:var(--info-bg);color:var(--primary-dark)}
+.badge.ok{background:var(--success-bg);color:var(--success)}
+.badge.warn{background:var(--warn-bg);color:var(--warn)}
+.badge.ko{background:var(--danger-bg);color:var(--danger)}
+.table-wrap{overflow-x:auto}
+.table{width:100%;border-collapse:collapse;font-size:.92rem}
+.table th,.table td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:middle}
+.table th{font-weight:700;color:var(--text-muted);font-size:.86rem;white-space:nowrap}
+.table tbody tr:hover{background:#f8fafc}
+.table td.actions{white-space:nowrap;text-align:right}
+.cell-input{width:90px;min-height:38px;padding:6px 10px}
+.cell-input.invalid{border-color:var(--danger);background:var(--danger-bg)}
+
+
+/* =====================================================
+   THÈMES
+   ===================================================== */
+
+/* Thème clair */
+html.theme-light,
+html.theme-light body {
+    background-color: #f5f7fb;
+    color: #202938;
+}
+
+/* Thème sombre : variables */
+html.theme-dark {
+    color-scheme: dark;
+    --text: #f3f4f6;
+    --text-muted: #9ca3af;
+    --background: #111827;
+    --border: #374151;
+    --info-bg: #1e3a5f;
+    --danger: #fca5a5;
+    --danger-bg: #3b1d1d;
+    --success: #86efac;
+    --success-bg: #12301f;
+    --warn: #fcd34d;
+    --warn-bg: #3a2e12;
+}
+
+/* Thème sombre : fond de page (le dégradé clair est retiré) */
+html.theme-dark,
+html.theme-dark body {
+    background-color: #111827;
+    background-image: none;
+    color: #f3f4f6;
+}
+
+/* Thème sombre : surfaces */
+html.theme-dark .sidebar,
+html.theme-dark .topbar,
+html.theme-dark .card,
+html.theme-dark .stat,
+html.theme-dark .menu-btn,
+html.theme-dark .child-select,
+html.theme-dark .btn-secondary,
+html.theme-dark .modal {
+    background-color: #1f2937;
+    color: #f3f4f6;
+    border-color: #374151;
+}
+
+html.theme-dark .btn-secondary {
+    color: #93c5fd;
+}
+
+html.theme-dark .btn-secondary:hover {
+    background-color: #374151;
+}
+
+/* Thème sombre : champs de formulaire */
+html.theme-dark input,
+html.theme-dark select,
+html.theme-dark textarea {
+    background-color: #111827;
+    color: #f9fafb;
+    border-color: #4b5563;
+}
+
+html.theme-dark input:disabled {
+    opacity: 0.7;
+}
+
+/* Thème sombre : liens du contenu (les boutons gardent leur texte blanc) */
+html.theme-dark .content a:not(.btn) {
+    color: #93c5fd;
+}
+
+/* Thème sombre : messages, badges, tableaux, barres */
+html.theme-dark .mssg.err { border-color: #7f1d1d; }
+html.theme-dark .mssg.success { border-color: #166534; }
+html.theme-dark .mssg.warn { border-color: #92400e; }
+html.theme-dark .badge { color: #93c5fd; }
+html.theme-dark .badge.ok { color: var(--success); }
+html.theme-dark .badge.warn { color: var(--warn); }
+html.theme-dark .badge.ko { color: var(--danger); }
+html.theme-dark .table tbody tr:hover { background: #273449; }
+html.theme-dark .bar { background: #374151; }
+html.theme-dark .viewer { background: #111827; }
+html.theme-dark .modal-close,
+html.theme-dark .modal .hint { color: #9ca3af; }

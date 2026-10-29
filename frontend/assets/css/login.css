@@ -1,0 +1,266 @@
+
+/* ==================================================
+   SCHOOLCONNECT — PAGE DE CONNEXION
+   Fichier : assets/css/connexion.css
+   ================================================== */
+
+/* 1. Variables de design */
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --text: #172033;
+    --text-muted: #64748b;
+    --background: #f1f5f9;
+    --white: #ffffff;
+    --border: #dbe3ef;
+    --danger: #b91c1c;
+    --danger-bg: #fef2f2;
+    --success: #166534;
+    --success-bg: #f0fdf4;
+    --radius: 16px;
+    --shadow: 0 20px 60px rgba(15, 23, 42, 0.10);
+}
+
+/* 2. Réinitialisation */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(
+            circle at top left,
+            #dbeafe 0,
+            transparent 40%
+        ),
+        var(--background);
+    line-height: 1.6;
+}
+
+/* 3. Conteneur principal */
+.login {
+    width: min(100% - 32px, 1050px);
+    min-height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    align-items: center;
+    gap: 70px;
+    padding: 48px 0;
+}
+
+/* 4. Présentation de SchoolConnect */
+.intro {
+    max-width: 520px;
+}
+
+.intro h1 {
+    color: var(--primary);
+    font-size: clamp(2.3rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+    margin-bottom: 22px;
+}
+
+.intro p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 460px;
+    line-height: 1.9;
+}
+
+/* 5. Panneau de connexion */
+.panel {
+    width: 100%;
+    padding: 36px;
+    background: var(--white);
+    border: 1px solid rgba(219, 227, 239, 0.8);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.panel h2 {
+    font-size: 1.65rem;
+    font-weight: 700;
+    margin-bottom: 28px;
+}
+
+/* 6. Groupes de champs */
+.panel > p:not(.aide) {
+    margin-bottom: 22px;
+}
+
+.panel label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.93rem;
+    font-weight: 600;
+}
+
+.panel input {
+    display: block;
+    width: 100%;
+    min-height: 49px;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 0.96rem;
+    color: var(--text);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.panel input::placeholder {
+    color: #94a3b8;
+}
+
+.panel input:hover {
+    border-color: #94a3b8;
+}
+
+.panel input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+/* 7. Bouton de connexion */
+.btn {
+    display: block;
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 9px;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.22);
+}
+
+.btn:active {
+    transform: scale(0.99);
+}
+
+.btn:focus-visible,
+.aide a:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+/* 8. Lien mot de passe oublié */
+.aide {
+    margin-top: 22px;
+    text-align: center;
+}
+
+.aide a {
+    color: var(--primary);
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.aide a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* 9. Messages d'information et d'erreur */
+.mssg {
+    padding: 12px 14px;
+    margin-bottom: 22px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-size: 0.9rem;
+}
+
+.mssg.err {
+    color: var(--danger);
+    background: var(--danger-bg);
+    border-color: #fecaca;
+}
+
+.mssg.success {
+    color: var(--success);
+    background: var(--success-bg);
+    border-color: #bbf7d0;
+}
+
+/* 10. Adaptation aux tablettes et téléphones */
+@media (max-width: 800px) {
+    .login {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        align-content: center;
+        max-width: 520px;
+        padding: 40px 0;
+    }
+
+    .intro {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .intro h1 {
+        margin-bottom: 14px;
+    }
+
+    .intro p {
+        font-size: 1rem;
+        margin: 0 auto;
+    }
+
+    .panel {
+        padding: 30px 24px;
+    }
+}
+
+/* 11. Petits écrans */
+@media (max-width: 380px) {
+    .login {
+        width: calc(100% - 24px);
+        gap: 24px;
+    }
+
+    .intro h1 {
+        font-size: 2rem;
+    }
+
+    .panel {
+        padding: 24px 18px;
+    }
+
+    .panel h2 {
+        font-size: 1.4rem;
+    }
+}
+
+/* 12. Respect des préférences d'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}

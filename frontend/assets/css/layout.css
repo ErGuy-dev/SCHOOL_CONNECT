@@ -1,0 +1,601 @@
+
+/* =====================================================
+   SCHOOLCONNECT — MISE EN PAGE GÉNÉRALE
+   Fichier : frontend/assets/css/layout.css
+   ===================================================== */
+
+/* Conteneur principal */
+.app {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    min-height: 100vh;
+}
+
+/* =====================================================
+   MENU LATÉRAL — COMPACT AVEC DÉFILEMENT
+   ===================================================== */
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100dvh;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 14px 10px;
+
+    background: var(--white);
+    border-right: 1px solid var(--border);
+
+    /* Autoriser le défilement vertical */
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+    scrollbar-color: #b8c4d6 transparent;
+}
+
+/* Barre de défilement pour Chrome et Edge */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #b8c4d6;
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #8494ad;
+}
+
+/* Nom de l'application */
+.brand {
+    flex: 0 0 auto;
+    padding: 0 8px 5px;
+
+    color: var(--primary);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* Rôle de l'utilisateur */
+.role {
+    flex: 0 0 auto;
+    padding: 0 8px 10px;
+
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    /* La navigation peut prendre la place disponible */
+    flex: 0 0 auto;
+}
+
+/* Liens du menu */
+.nav a {
+    display: block;
+    padding: 7px 9px;
+    border-radius: 8px;
+
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.88rem;
+    line-height: 1.35;
+    text-decoration: none;
+
+    overflow-wrap: anywhere;
+    transition: background-color 0.2s ease;
+}
+
+/* Survol des liens */
+.nav a:hover {
+    background: var(--info-bg);
+}
+
+/* Page active */
+.nav a[aria-current="page"] {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Déconnexion */
+.logout {
+    display: block;
+    flex: 0 0 auto;
+
+    margin-top: 10px;
+    padding: 12px 9px 4px;
+
+    border-top: 1px solid var(--border);
+    border-radius: 0;
+
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* =====================================================
+   CONTENU PRINCIPAL
+   ===================================================== */
+
+.main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* =====================================================
+   BARRE SUPÉRIEURE
+   ===================================================== */
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    min-width: 0;
+    padding: 14px 32px;
+
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+
+    border-bottom: 1px solid var(--border);
+}
+
+/* Espace flexible entre le menu et les éléments de droite */
+.topbar .spacer {
+    flex: 1 1 auto;
+    min-width: 12px;
+}
+
+/* Zone droite : notifications et utilisateur */
+.topbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+
+    flex: 0 0 auto;
+    min-width: 0;
+}
+
+/* Nom de l'utilisateur */
+.user {
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.topbar-right .user {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Bouton du menu mobile */
+.menu-btn {
+    display: none;
+
+    min-height: 40px;
+    padding: 6px 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: var(--white);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Sélecteur d'enfant, si utilisé dans d'autres espaces */
+.child-select {
+    width: auto;
+    min-width: 190px;
+    min-height: 40px;
+    padding: 6px 12px;
+
+    font: inherit;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: var(--white);
+}
+
+/* =====================================================
+   NOTIFICATIONS
+   ===================================================== */
+
+.topbar .notifications-app {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    z-index: 1000;
+}
+
+/* Panneau déroulant */
+.topbar .notifications-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: auto;
+
+    width: min(380px, calc(100vw - 32px));
+    max-height: min(480px, calc(100vh - 100px));
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    z-index: 1001;
+}
+
+/* Garantir le respect de l'attribut hidden */
+.topbar .notifications-panel[hidden] {
+    display: none !important;
+}
+
+/* =====================================================
+   CONTENU DES PAGES
+   ===================================================== */
+
+.content {
+    width: 100%;
+    max-width: 1150px;
+    box-sizing: border-box;
+    padding: 32px;
+}
+
+.content > h1 {
+    margin-bottom: 6px;
+    font-size: 1.7rem;
+}
+
+.content > .lead {
+    margin-bottom: 26px;
+    color: var(--text-muted);
+}
+
+/* Cartes de statistiques */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.stat {
+    padding: 18px 20px;
+
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.stat strong {
+    display: block;
+    color: var(--primary);
+    font-size: 1.9rem;
+    line-height: 1.2;
+}
+
+.stat span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Colonnes */
+.cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    align-items: start;
+}
+
+/* Formulaires en grille */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+/* Barre d'outils */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.toolbar input,
+.toolbar select {
+    width: auto;
+    min-width: 200px;
+    flex: 1;
+}
+
+/* Barres de statistiques */
+.bar-row {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr) 52px;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 0.92rem;
+}
+
+.bar {
+    height: 12px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: #e2e8f0;
+}
+
+.bar i {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+    background: var(--primary);
+}
+
+/* Listes */
+.list {
+    list-style: none;
+}
+
+.list li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.list li:last-child {
+    border-bottom: 0;
+}
+
+.list time {
+    color: var(--text-muted);
+    font-size: 0.84rem;
+}
+
+/* Visionneuse de documents */
+.viewer {
+    height: 420px;
+    margin-top: 14px;
+    padding: 16px;
+
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #e2e8f0;
+}
+
+.viewer svg {
+    display: block;
+    width: calc(360px * var(--zoom, 1));
+    max-width: none;
+    margin: 0 auto;
+
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.15);
+}
+
+.zoom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Actions de page */
+.page-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+
+/* =====================================================
+   MODALES
+   ===================================================== */
+
+.modal {
+    width: min(520px, 92vw);
+    max-height: 90vh;
+    margin: auto;
+    padding: 0;
+    inset: 0;
+
+    overflow: auto;
+    border: 0;
+    border-radius: 12px;
+
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.3);
+}
+
+.modal::backdrop {
+    background: rgba(15, 23, 42, 0.55);
+}
+
+.modal form {
+    padding: 24px;
+}
+
+.modal .form-grid {
+    grid-template-columns: 1fr;
+}
+
+.modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.modal-head h2 {
+    margin: 0;
+}
+
+.modal-close {
+    color: #475569;
+    font-size: 1.6rem;
+    line-height: 1;
+
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.modal .hint {
+    margin: 12px 0 0;
+    color: #475569;
+    font-size: 0.875rem;
+}
+
+/* =====================================================
+   RESPONSIVE — TABLETTES ET TÉLÉPHONES
+   ===================================================== */
+
+@media (max-width: 900px) {
+    .app {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+
+        width: 260px;
+        height: 100vh;
+        height: 100dvh;
+
+        z-index: 30;
+
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+        box-shadow: var(--shadow);
+    }
+
+    .menu-btn {
+        display: inline-block;
+        flex: 0 0 auto;
+    }
+
+    .topbar,
+    .content {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE — PETITS ÉCRANS
+   ===================================================== */
+
+@media (max-width: 600px) {
+    .topbar {
+        gap: 8px;
+        background: #fff;
+
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+
+    .topbar-right {
+        gap: 8px;
+    }
+
+    .topbar-right .user {
+        max-width: 90px;
+        font-size: 13px;
+    }
+
+    .content {
+        padding-top: 22px;
+        padding-bottom: 22px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+        gap: 12px;
+    }
+
+    .cols {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .topbar .notifications-panel {
+        position: fixed;
+        top: 70px;
+        right: 12px;
+        left: 12px;
+
+        width: auto;
+        max-height: calc(100vh - 90px);
+        max-height: calc(100dvh - 90px);
+    }
+}
+
+/* =====================================================
+   IMPRESSION
+   ===================================================== */
+
+@media print {
+    .sidebar,
+    .topbar {
+        display: none;
+    }
+
+    .app {
+        display: block;
+    }
+
+    .content {
+        max-width: none;
+        padding: 0;
+    }
+}
+
+/* =====================================================
+   ACCESSIBILITÉ — ANIMATIONS RÉDUITES
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar {
+        transition: none;
+    }
+
+    .nav a {
+        transition: none;
+    }
+}

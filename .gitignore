@@ -1,0 +1,30 @@
+# Dépendances PHP Composer
+/vendor/
+/**/vendor/
+
+# Fichiers contenant des secrets
+.env
+.env.*
+!.env.example
+config.local.php
+secrets/
+*.pem
+*.key
+
+# Sauvegardes et exports SQL
+*.sql
+*.sql.gz
+*.dump
+*.bak
+*.backup
+
+# Journaux et fichiers temporaires
+*.log
+*.tmp
+*.cache
+
+# Fichiers Windows et éditeurs
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/

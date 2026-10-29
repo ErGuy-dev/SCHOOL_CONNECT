@@ -1,0 +1,15 @@
+/* SchoolConnect : pages d'authentification (utilise base.css) */
+.login{width:min(100% - 32px,1050px);min-height:100vh;margin:0 auto;display:grid;grid-template-columns:1fr 420px;align-items:center;gap:70px;padding:48px 0}
+.intro{max-width:520px}
+.intro h1{color:var(--primary);font-size:clamp(2.3rem,5vw,3.5rem);font-weight:800;letter-spacing:-1.5px;line-height:1.15;margin-bottom:22px}
+.intro p{color:var(--text-muted);font-size:1.1rem;max-width:460px;line-height:1.9}
+.panel{width:100%;padding:36px;background:var(--white);border:1px solid rgba(219,227,239,.8);border-radius:var(--radius);box-shadow:var(--shadow)}
+.panel h2{font-size:1.65rem;font-weight:700;margin-bottom:28px}
+.panel>form>p,.panel>p:not(.aide){margin-bottom:22px}
+.panel .btn{display:block;width:100%;min-height:50px;font-size:1rem}
+.aide{margin-top:22px;text-align:center}
+.aide a{font-size:.92rem;font-weight:600;text-decoration:none}
+.aide a:hover{color:var(--primary-dark);text-decoration:underline}
+@media(max-width:800px){.login{grid-template-columns:1fr;gap:32px;align-content:center;max-width:520px;padding:40px 0}.intro{text-align:center;margin:0 auto}.intro h1{margin-bottom:14px}.intro p{font-size:1rem;margin:0 auto}.panel{padding:30px 24px}}
+@media(max-width:380px){.login{width:calc(100% - 24px);gap:24px}.intro h1{font-size:2rem}.panel{padding:24px 18px}.panel h2{font-size:1.4rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}

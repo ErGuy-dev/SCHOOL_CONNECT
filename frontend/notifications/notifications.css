@@ -1,0 +1,321 @@
+/* =========================================================
+   SCHOOLCONNECT — CENTRE DE NOTIFICATIONS
+   Fichier : frontend/notifications/notifications.css
+   ========================================================= */
+
+/* Conteneur principal */
+.notifications-app {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    font-family: Arial, sans-serif;
+    color: #1f2937;
+    z-index: 1000;
+}
+
+/* Bouton cloche (icône seule) */
+.notifications-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid #dbe2ea;
+    border-radius: 50%;
+    background: #fff;
+    color: #1f2937;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.notifications-toggle:hover,
+.notifications-toggle:focus-visible,
+.notifications-toggle[aria-expanded="true"] {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: #2563eb;
+}
+
+.notifications-toggle:focus-visible,
+.notifications-refresh:focus-visible,
+.notification-actions button:focus-visible,
+.notification-actions a:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 3px;
+}
+
+.notifications-icon {
+    display: block;
+    flex: 0 0 auto;
+    pointer-events: none;
+}
+
+/* Pastille : nombre de notifications non lues,
+   posée sur le coin supérieur droit de la cloche */
+.notifications-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    background: #dc2626;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* Respect de l'attribut HTML hidden */
+.notifications-count[hidden],
+.notifications-panel[hidden] {
+    display: none !important;
+}
+
+/* Panneau déroulant
+   Il se positionne par rapport à .notifications-app.
+   Il ne participe pas à la mise en page du tableau de bord. */
+.notifications-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: auto;
+    width: min(380px, calc(100vw - 32px));
+    max-height: min(480px, calc(100vh - 100px));
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    color: #1f2937;
+    box-shadow: 0 12px 32px rgb(0 0 0 / 12%);
+    z-index: 1001;
+}
+
+/* En-tête du panneau */
+.notifications-header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid #e5e7eb;
+    background: #fff;
+    z-index: 1;
+}
+
+.notifications-header h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Bouton Actualiser */
+.notifications-refresh {
+    flex: 0 0 auto;
+    padding: 4px 0;
+    border: 0;
+    background: transparent;
+    color: #2563eb;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.notifications-refresh:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+/* Message de statut : chargement, erreur ou absence de notification */
+.notifications-status {
+    margin: 0;
+    padding: 12px 16px;
+    color: #6b7280;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Liste des notifications */
+.notifications-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Élément individuel */
+.notification-item {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f0f2f5;
+    overflow-wrap: anywhere;
+}
+
+.notification-item:last-child {
+    border-bottom: 0;
+}
+
+/* Notification non lue */
+.notification-item.unread {
+    background: #eff6ff;
+    border-left: 3px solid #2563eb;
+}
+
+/* Type de notification */
+.notification-type {
+    display: inline-block;
+    margin-bottom: 6px;
+    color: #6b7280;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Titre */
+.notification-title {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Message */
+.notification-message {
+    margin: 0 0 8px;
+    color: #4b5563;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Date */
+.notification-date {
+    display: block;
+    color: #6b7280;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* Actions : marquer comme lue, ouvrir un lien, etc. */
+.notification-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.notification-actions button,
+.notification-actions a {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #2563eb;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.notification-actions button:hover:not(:disabled),
+.notification-actions a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+.notification-actions button:disabled {
+    color: #6b7280;
+    cursor: default;
+}
+
+/* Adaptation aux petits écrans :
+   le panneau devient flottant sur toute la largeur de l'écran */
+@media (max-width: 480px) {
+    .notifications-panel {
+        position: fixed;
+        top: 70px;
+        right: 12px;
+        left: 12px;
+        width: auto;
+        max-height: calc(100vh - 90px);
+    }
+
+    .notifications-header {
+        padding: 14px;
+    }
+
+    .notification-item {
+        padding: 12px 14px;
+    }
+}
+
+/* =========================================================
+   THÈME SOMBRE
+   ========================================================= */
+html.theme-dark .notifications-app,
+html.theme-dark .notifications-panel,
+html.theme-dark .notifications-header,
+html.theme-dark .notifications-toggle {
+    background: #1f2937;
+    color: #f3f4f6;
+    border-color: #374151;
+}
+
+html.theme-dark .notifications-toggle:hover,
+html.theme-dark .notifications-toggle:focus-visible,
+html.theme-dark .notifications-toggle[aria-expanded="true"] {
+    background: #374151;
+    border-color: #60a5fa;
+    color: #93c5fd;
+}
+
+html.theme-dark .notifications-app {
+    background: transparent;
+    border-color: transparent;
+}
+
+html.theme-dark .notifications-count {
+    border-color: #1f2937;
+}
+
+html.theme-dark .notifications-refresh,
+html.theme-dark .notification-actions button,
+html.theme-dark .notification-actions a {
+    color: #93c5fd;
+}
+
+html.theme-dark .notification-item {
+    border-bottom-color: #374151;
+}
+
+html.theme-dark .notification-item.unread {
+    background: #1e3a5f;
+    border-left-color: #60a5fa;
+}
+
+html.theme-dark .notification-message,
+html.theme-dark .notification-date,
+html.theme-dark .notification-type,
+html.theme-dark .notifications-status {
+    color: #9ca3af;
+}
+
+/* Réduction des animations si demandé par l'utilisateur */
+@media (prefers-reduced-motion: reduce) {
+    .notifications-toggle {
+        transition: none;
+    }
+}
